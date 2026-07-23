@@ -1,0 +1,69 @@
+generated: '2026-07-23'
+method: derived
+source: openapi/obie-account-info-openapi.yaml, openapi/obie-confirmation-funds-openapi.yaml,
+  openapi/obie-payment-initiation-openapi.yaml
+schemes:
+- name: TPPOAuth2Security
+  source: openapi/obie-account-info-openapi.yaml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://authserver.example/token
+  description: TPP client credential authorisation flow with the ASPSP
+- name: PSUOAuth2Security
+  source: openapi/obie-account-info-openapi.yaml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://authserver.example/authorization
+    tokenUrl: https://authserver.example/token
+  description: OAuth flow, it is required when the PSU needs to perform SCA with the ASPSP when
+    a TPP wants to access an ASPSP resource owned by the PSU
+- name: TPPOAuth2Security
+  source: openapi/obie-confirmation-funds-openapi.yaml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://authserver.example/token
+  description: TPP client credential authorisation flow with the ASPSP
+- name: PSUOAuth2Security
+  source: openapi/obie-confirmation-funds-openapi.yaml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://authserver.example/authorization
+    tokenUrl: https://authserver.example/token
+  description: OAuth flow, it is required when the PSU needs to perform SCA with the ASPSP when
+    a TPP wants to access an ASPSP resource owned by the PSU
+- name: TPPOAuth2Security
+  source: openapi/obie-payment-initiation-openapi.yaml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://authserver.example/token
+  description: TPP client credential authorisation flow with the ASPSP
+- name: PSUOAuth2Security
+  source: openapi/obie-payment-initiation-openapi.yaml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://authserver.example/authorization
+    tokenUrl: https://authserver.example/token
+  description: OAuth flow, it is required when the PSU needs to perform SCA with the ASPSP when
+    a TPP wants to access an ASPSP resource owned by the PSU
+scopes:
+- scope: accounts
+  description: Ability to read Accounts information
+  flows:
+  - authorizationCode
+  - clientCredentials
+  sources:
+  - openapi/obie-account-info-openapi.yaml
+- scope: fundsconfirmations
+  description: Funds confirmation entitlement
+  flows:
+  - authorizationCode
+  - clientCredentials
+  sources:
+  - openapi/obie-confirmation-funds-openapi.yaml
+- scope: payments
+  description: Generic payment scope
+  flows:
+  - authorizationCode
+  - clientCredentials
+  sources:
+  - openapi/obie-payment-initiation-openapi.yaml

@@ -1,0 +1,103 @@
+generated: '2026-07-23'
+method: derived
+source: >-
+  OpenAPI 4xx/5xx responses across openapi/obie-account-info-openapi.yaml,
+  openapi/obie-payment-initiation-openapi.yaml, openapi/obie-confirmation-funds-openapi.yaml
+format: obie-error-response
+envelope:
+  media_type: application/json
+  schema: OBErrorResponse1
+  detail_schema: OBError1
+  fields:
+    Id: Unique audit reference for the error instance
+    Code: High-level textual category (deprecated)
+    Message: Brief human-readable message (deprecated)
+    Errors: Required array of OBError1 detail objects
+    "Errors[].ErrorCode": Namespaced machine code (UK.OBIE.*)
+    "Errors[].Message": Description of the specific error
+    "Errors[].Path": JSON path of the offending field (optional)
+    "Errors[].Url": Remediation / reference URL (optional)
+http_statuses:
+  - status: 400
+    title: Bad Request
+    description: Request failed validation (malformed body, missing/invalid field, bad header).
+    body: OBErrorResponse1
+  - status: 401
+    title: Unauthorized
+    description: Missing, invalid or expired access token; SCA / consent not satisfied.
+  - status: 403
+    title: Forbidden
+    description: Token valid but lacks the required scope or consent for the resource.
+  - status: 404
+    title: Not Found
+    description: Consent, account or payment resource does not exist or is not visible to the TPP.
+  - status: 405
+    title: Method Not Allowed
+  - status: 406
+    title: Not Acceptable
+    description: Requested representation/Accept header cannot be produced.
+  - status: 409
+    title: Conflict
+    description: Resource state conflict (e.g. re-submitting a consent already actioned).
+  - status: 415
+    title: Unsupported Media Type
+  - status: 422
+    title: Unprocessable Entity
+    description: Semantically invalid payment instruction (business-rule failure).
+    body: OBErrorResponse1
+  - status: 429
+    title: Too Many Requests
+    description: Polling / rate limit exceeded for the TPP.
+  - status: 500
+    title: Internal Server Error
+    body: OBErrorResponse1
+obie_error_codes:
+  note: >-
+    OBError1.ErrorCode values are drawn from the UK Open Banking namespaced code list.
+    The set below is the OBIE-standard registry the ASPSP returns; it is not
+    Coventry-proprietary. Reference the OBIE Read/Write API Standard for the authoritative list.
+  codes:
+    - code: UK.OBIE.Field.Missing
+      meaning: A required field was not supplied.
+    - code: UK.OBIE.Field.Invalid
+      meaning: A field value failed validation.
+    - code: UK.OBIE.Field.InvalidDate
+      meaning: A date field is invalid or out of range.
+    - code: UK.OBIE.Field.Unexpected
+      meaning: An unexpected field was supplied.
+    - code: UK.OBIE.Field.Expected
+      meaning: A conditionally-required field was expected but absent.
+    - code: UK.OBIE.Header.Missing
+      meaning: A required HTTP header (e.g. x-idempotency-key, x-jws-signature) was not supplied.
+    - code: UK.OBIE.Header.Invalid
+      meaning: A required HTTP header value is invalid.
+    - code: UK.OBIE.Resource.NotFound
+      meaning: The requested resource does not exist.
+    - code: UK.OBIE.Resource.InvalidConsentStatus
+      meaning: The consent is not in a state that permits the requested action.
+    - code: UK.OBIE.Resource.InvalidFormat
+      meaning: The resource representation is malformed.
+    - code: UK.OBIE.Resource.ConsentMismatch
+      meaning: The request does not match the authorised consent.
+    - code: UK.OBIE.Rules.RequestObject.Invalid
+      meaning: The request object (JWT/JWS) is invalid.
+    - code: UK.OBIE.Rules.ResourceAlreadyExists
+      meaning: A resource with the supplied idempotency key already exists.
+    - code: UK.OBIE.Signature.Missing
+      meaning: The x-jws-signature header is required but missing.
+    - code: UK.OBIE.Signature.Invalid
+      meaning: The detached JWS signature failed verification.
+    - code: UK.OBIE.Signature.Malformed
+      meaning: The JWS signature is malformed.
+    - code: UK.OBIE.UnexpectedError
+      meaning: An unexpected/unclassified error occurred (see Id for audit).
+    - code: UK.OBIE.Unsupported.AccountIdentifier
+      meaning: The supplied account identifier scheme is not supported.
+    - code: UK.OBIE.Unsupported.Currency
+      meaning: The requested currency is not supported.
+    - code: UK.OBIE.Unsupported.Frequency
+      meaning: The requested payment frequency is not supported.
+    - code: UK.OBIE.Unsupported.LocalInstrument
+      meaning: The requested local instrument (payment scheme) is not supported.
+    - code: UK.OBIE.Unsupported.Scheme
+      meaning: The requested scheme name is not supported.

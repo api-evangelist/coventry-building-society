@@ -1,0 +1,15 @@
+generated: '2026-07-23'
+method: generated
+skills:
+  - file: coventry-building-society-account-information.md
+    name: Retrieve consented account data (AIS)
+    api: openapi/obie-account-info-openapi.yaml
+    operations: [CreateAccountAccessConsents, GetAccountAccessConsentsConsentId, GetAccounts, GetAccountsAccountId, GetAccountsAccountIdBalances, GetAccountsAccountIdTransactions]
+  - file: coventry-building-society-domestic-payment.md
+    name: Initiate a domestic payment (PIS)
+    api: openapi/obie-payment-initiation-openapi.yaml
+    operations: [CreateDomesticPaymentConsents, GetDomesticPaymentConsentsConsentId, GetDomesticPaymentConsentsConsentIdFundsConfirmation, CreateDomesticPayments, GetDomesticPaymentsDomesticPaymentId]
+  - file: coventry-building-society-confirmation-of-funds.md
+    name: Confirm funds availability (CBPII)
+    api: openapi/obie-confirmation-funds-openapi.yaml
+    operations: [CreateFundsConfirmationConsents, GetFundsConfirmationConsentsConsentId, DeleteFundsConfirmationConsentsConsentId, CreateFundsConfirmations]

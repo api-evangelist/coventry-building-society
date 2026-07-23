@@ -1,0 +1,116 @@
+generated: '2026-07-23'
+method: derived
+source: >-
+  OpenAPI $ref graph + id-reference fields (ConsentId, AccountId) across
+  openapi/obie-account-info-openapi.yaml, openapi/obie-payment-initiation-openapi.yaml,
+  openapi/obie-confirmation-funds-openapi.yaml
+note: >-
+  Entity-relationship graph derived from the OBIE Read/Write message set as implemented
+  by Coventry Building Society. Consent resources are the root of every access path:
+  a TPP creates a consent, the PSU authorises it via SCA, and downstream resources are
+  read/created against that consent.
+entities:
+  - name: AccountAccessConsent
+    api: AIS
+    key: ConsentId
+    description: Authorisation grant scoping which account data a TPP may read.
+  - name: Account
+    api: AIS
+    key: AccountId
+    description: A PSU account exposed under an authorised account-access consent.
+  - name: Balance
+    api: AIS
+    description: Balance snapshot for an account.
+  - name: Transaction
+    api: AIS
+    description: Booked/pending transaction for an account.
+  - name: Beneficiary
+    api: AIS
+  - name: DirectDebit
+    api: AIS
+  - name: StandingOrder
+    api: AIS
+  - name: Product
+    api: AIS
+  - name: Party
+    api: AIS
+  - name: Offer
+    api: AIS
+  - name: Statement
+    api: AIS
+  - name: DomesticPaymentConsent
+    api: PIS
+    key: ConsentId
+    description: Authorisation for a single domestic payment instruction.
+  - name: DomesticPayment
+    api: PIS
+    key: DomesticPaymentId
+    description: Executed domestic payment created against an authorised consent.
+  - name: DomesticScheduledPaymentConsent
+    api: PIS
+  - name: DomesticScheduledPayment
+    api: PIS
+  - name: DomesticStandingOrderConsent
+    api: PIS
+  - name: DomesticStandingOrder
+    api: PIS
+  - name: FilePaymentConsent
+    api: PIS
+  - name: FilePayment
+    api: PIS
+  - name: FundsConfirmationConsent
+    api: CBPII
+    key: ConsentId
+    description: Consent permitting a CBPII to check funds availability on an account.
+  - name: FundsConfirmation
+    api: CBPII
+    description: A single confirmation-of-funds check against an authorised consent.
+relationships:
+  - from: Account
+    type: belongs_to
+    to: AccountAccessConsent
+    via: ConsentId
+  - from: Balance
+    type: belongs_to
+    to: Account
+    via: AccountId
+  - from: Transaction
+    type: belongs_to
+    to: Account
+    via: AccountId
+  - from: Beneficiary
+    type: belongs_to
+    to: Account
+    via: AccountId
+  - from: DirectDebit
+    type: belongs_to
+    to: Account
+    via: AccountId
+  - from: StandingOrder
+    type: belongs_to
+    to: Account
+    via: AccountId
+  - from: Statement
+    type: belongs_to
+    to: Account
+    via: AccountId
+  - from: DomesticPayment
+    type: belongs_to
+    to: DomesticPaymentConsent
+    via: ConsentId
+  - from: DomesticScheduledPayment
+    type: belongs_to
+    to: DomesticScheduledPaymentConsent
+    via: ConsentId
+  - from: DomesticStandingOrder
+    type: belongs_to
+    to: DomesticStandingOrderConsent
+    via: ConsentId
+  - from: FilePayment
+    type: belongs_to
+    to: FilePaymentConsent
+    via: ConsentId
+  - from: FundsConfirmation
+    type: belongs_to
+    to: FundsConfirmationConsent
+    via: ConsentId

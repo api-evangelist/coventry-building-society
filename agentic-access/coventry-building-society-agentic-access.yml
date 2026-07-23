@@ -1,0 +1,1164 @@
+generated: '2026-07-23'
+method: generated
+source: openapi/obie-account-info-openapi.yaml, openapi/obie-confirmation-funds-openapi.yaml,
+  openapi/obie-opendata-swagger.json, openapi/obie-payment-initiation-openapi.yaml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 86
+  by_action_class:
+    acting: 20
+    connected: 66
+  by_consequence:
+    write: 5
+    read: 66
+    physical: 15
+  human_in_the_loop_required: 0
+operations:
+- path: /account-access-consents
+  method: post
+  operationId: CreateAccountAccessConsents
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - accounts
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /account-access-consents/{ConsentId}
+  method: get
+  operationId: GetAccountAccessConsentsConsentId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /account-access-consents/{ConsentId}
+  method: delete
+  operationId: DeleteAccountAccessConsentsConsentId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - accounts
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /accounts
+  method: get
+  operationId: GetAccounts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /accounts/{AccountId}
+  method: get
+  operationId: GetAccountsAccountId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /accounts/{AccountId}/balances
+  method: get
+  operationId: GetAccountsAccountIdBalances
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /accounts/{AccountId}/beneficiaries
+  method: get
+  operationId: GetAccountsAccountIdBeneficiaries
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /accounts/{AccountId}/direct-debits
+  method: get
+  operationId: GetAccountsAccountIdDirectDebits
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /accounts/{AccountId}/offers
+  method: get
+  operationId: GetAccountsAccountIdOffers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /accounts/{AccountId}/parties
+  method: get
+  operationId: GetAccountsAccountIdParties
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /accounts/{AccountId}/party
+  method: get
+  operationId: GetAccountsAccountIdParty
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /accounts/{AccountId}/product
+  method: get
+  operationId: GetAccountsAccountIdProduct
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /accounts/{AccountId}/scheduled-payments
+  method: get
+  operationId: GetAccountsAccountIdScheduledPayments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /accounts/{AccountId}/standing-orders
+  method: get
+  operationId: GetAccountsAccountIdStandingOrders
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /accounts/{AccountId}/statements
+  method: get
+  operationId: GetAccountsAccountIdStatements
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /accounts/{AccountId}/statements/{StatementId}
+  method: get
+  operationId: GetAccountsAccountIdStatementsStatementId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /accounts/{AccountId}/statements/{StatementId}/file
+  method: get
+  operationId: GetAccountsAccountIdStatementsStatementIdFile
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /accounts/{AccountId}/statements/{StatementId}/transactions
+  method: get
+  operationId: GetAccountsAccountIdStatementsStatementIdTransactions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /accounts/{AccountId}/transactions
+  method: get
+  operationId: GetAccountsAccountIdTransactions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /balances
+  method: get
+  operationId: GetBalances
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /beneficiaries
+  method: get
+  operationId: GetBeneficiaries
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /direct-debits
+  method: get
+  operationId: GetDirectDebits
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /offers
+  method: get
+  operationId: GetOffers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /party
+  method: get
+  operationId: GetParty
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /products
+  method: get
+  operationId: GetProducts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /scheduled-payments
+  method: get
+  operationId: GetScheduledPayments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /standing-orders
+  method: get
+  operationId: GetStandingOrders
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /statements
+  method: get
+  operationId: GetStatements
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /transactions
+  method: get
+  operationId: GetTransactions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - accounts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /funds-confirmation-consents
+  method: post
+  operationId: CreateFundsConfirmationConsents
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - fundsconfirmations
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /funds-confirmation-consents/{ConsentId}
+  method: get
+  operationId: GetFundsConfirmationConsentsConsentId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - fundsconfirmations
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /funds-confirmation-consents/{ConsentId}
+  method: delete
+  operationId: DeleteFundsConfirmationConsentsConsentId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - fundsconfirmations
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /funds-confirmations
+  method: post
+  operationId: CreateFundsConfirmations
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - fundsconfirmations
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /branches
+  method: get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /branches
+  method: head
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /atms
+  method: get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /atms
+  method: head
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /personal-current-accounts
+  method: get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /personal-current-accounts
+  method: head
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /business-current-accounts
+  method: get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /business-current-accounts
+  method: head
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /unsecured-sme-loans
+  method: get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /unsecured-sme-loans
+  method: head
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /commercial-credit-cards
+  method: get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /commercial-credit-cards
+  method: head
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domestic-payment-consents
+  method: post
+  operationId: CreateDomesticPaymentConsents
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - payments
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domestic-payment-consents/{ConsentId}
+  method: get
+  operationId: GetDomesticPaymentConsentsConsentId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domestic-payment-consents/{ConsentId}/funds-confirmation
+  method: get
+  operationId: GetDomesticPaymentConsentsConsentIdFundsConfirmation
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domestic-payments
+  method: post
+  operationId: CreateDomesticPayments
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - payments
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domestic-payments/{DomesticPaymentId}
+  method: get
+  operationId: GetDomesticPaymentsDomesticPaymentId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domestic-payments/{DomesticPaymentId}/payment-details
+  method: get
+  operationId: GetDomesticPaymentsDomesticPaymentIdPaymentDetails
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domestic-scheduled-payment-consents
+  method: post
+  operationId: CreateDomesticScheduledPaymentConsents
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - payments
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domestic-scheduled-payment-consents/{ConsentId}
+  method: get
+  operationId: GetDomesticScheduledPaymentConsentsConsentId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domestic-scheduled-payments
+  method: post
+  operationId: CreateDomesticScheduledPayments
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - payments
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domestic-scheduled-payments/{DomesticScheduledPaymentId}
+  method: get
+  operationId: GetDomesticScheduledPaymentsDomesticScheduledPaymentId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domestic-scheduled-payments/{DomesticScheduledPaymentId}/payment-details
+  method: get
+  operationId: GetDomesticScheduledPaymentsDomesticScheduledPaymentIdPaymentDetails
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domestic-standing-order-consents
+  method: post
+  operationId: CreateDomesticStandingOrderConsents
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - payments
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domestic-standing-order-consents/{ConsentId}
+  method: get
+  operationId: GetDomesticStandingOrderConsentsConsentId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domestic-standing-orders
+  method: post
+  operationId: CreateDomesticStandingOrders
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - payments
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domestic-standing-orders/{DomesticStandingOrderId}
+  method: get
+  operationId: GetDomesticStandingOrdersDomesticStandingOrderId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domestic-standing-orders/{DomesticStandingOrderId}/payment-details
+  method: get
+  operationId: GetDomesticStandingOrdersDomesticStandingOrderIdPaymentDetails
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /file-payment-consents
+  method: post
+  operationId: CreateFilePaymentConsents
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - payments
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /file-payment-consents/{ConsentId}
+  method: get
+  operationId: GetFilePaymentConsentsConsentId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /file-payment-consents/{ConsentId}/file
+  method: post
+  operationId: CreateFilePaymentConsentsConsentIdFile
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - payments
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /file-payment-consents/{ConsentId}/file
+  method: get
+  operationId: GetFilePaymentConsentsConsentIdFile
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /file-payments
+  method: post
+  operationId: CreateFilePayments
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - payments
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /file-payments/{FilePaymentId}
+  method: get
+  operationId: GetFilePaymentsFilePaymentId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /file-payments/{FilePaymentId}/payment-details
+  method: get
+  operationId: GetFilePaymentsFilePaymentIdPaymentDetails
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /file-payments/{FilePaymentId}/report-file
+  method: get
+  operationId: GetFilePaymentsFilePaymentIdReportFile
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /international-payment-consents
+  method: post
+  operationId: CreateInternationalPaymentConsents
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - payments
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /international-payment-consents/{ConsentId}
+  method: get
+  operationId: GetInternationalPaymentConsentsConsentId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /international-payment-consents/{ConsentId}/funds-confirmation
+  method: get
+  operationId: GetInternationalPaymentConsentsConsentIdFundsConfirmation
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /international-payments
+  method: post
+  operationId: CreateInternationalPayments
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - payments
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /international-payments/{InternationalPaymentId}
+  method: get
+  operationId: GetInternationalPaymentsInternationalPaymentId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /international-payments/{InternationalPaymentId}/payment-details
+  method: get
+  operationId: GetInternationalPaymentsInternationalPaymentIdPaymentDetails
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /international-scheduled-payment-consents
+  method: post
+  operationId: CreateInternationalScheduledPaymentConsents
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - payments
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /international-scheduled-payment-consents/{ConsentId}
+  method: get
+  operationId: GetInternationalScheduledPaymentConsentsConsentId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /international-scheduled-payment-consents/{ConsentId}/funds-confirmation
+  method: get
+  operationId: GetInternationalScheduledPaymentConsentsConsentIdFundsConfirmation
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /international-scheduled-payments
+  method: post
+  operationId: CreateInternationalScheduledPayments
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - payments
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /international-scheduled-payments/{InternationalScheduledPaymentId}
+  method: get
+  operationId: GetInternationalScheduledPaymentsInternationalScheduledPaymentId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /international-scheduled-payments/{InternationalScheduledPaymentId}/payment-details
+  method: get
+  operationId: GetInternationalScheduledPaymentsInternationalScheduledPaymentIdPaymentDetails
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /international-standing-order-consents
+  method: post
+  operationId: CreateInternationalStandingOrderConsents
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - payments
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /international-standing-order-consents/{ConsentId}
+  method: get
+  operationId: GetInternationalStandingOrderConsentsConsentId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /international-standing-orders
+  method: post
+  operationId: CreateInternationalStandingOrders
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - payments
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /international-standing-orders/{InternationalStandingOrderPaymentId}
+  method: get
+  operationId: GetInternationalStandingOrdersInternationalStandingOrderPaymentId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /international-standing-orders/{InternationalStandingOrderPaymentId}/payment-details
+  method: get
+  operationId: GetInternationalStandingOrdersInternationalStandingOrderPaymentIdPaymentDetails
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - payments
+    token:
+      max-ttl: 3600
+    audit: none

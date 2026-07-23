@@ -1,0 +1,35 @@
+# Coventry Building Society — Open Banking APIs
+
+> Coventry Building Society is the UK's second-largest building society, a member-owned mutual (founded 1884). As an FCA-authorised, PRA-regulated ASPSP it participates in UK Open Banking under PSD2 and the OBIE Read/Write API Standard, publishing CBS v2.0 AIS, PIS and CBPII APIs plus a public FCA Service Metrics open-data endpoint. Read/Write access is FAPI-secured (OAuth2/OIDC, PSD2 SCA, mutual-TLS with Open Banking WAC or eIDAS QWAC certificates). TPP onboarding: open.banking@thecoventry.co.uk.
+
+## APIs
+
+- [Open Data FCA Service Metrics API](https://developer.coventrybuildingsociety.co.uk/): public, unauthenticated OBIE Open Data (CBS v1.0) publishing FCA service metrics for personal current accounts.
+- [Account & Transaction Information API (AIS)](https://developer.coventrybuildingsociety.co.uk/): consented read access to accounts, balances, transactions, standing orders, direct debits, beneficiaries and product data (CBS v2.0).
+- [Payment Initiation API (PIS)](https://developer.coventrybuildingsociety.co.uk/): consented initiation of domestic single, scheduled, standing-order and file payments (CBS v2.0).
+- [Confirmation of Funds API (CBPII)](https://developer.coventrybuildingsociety.co.uk/): consented card-based instrument issuer funds-availability checks (CBS v2.0).
+
+## Specs
+
+- openapi/obie-opendata-swagger.json — Open Data (Swagger 2.0)
+- openapi/obie-account-info-openapi.yaml — AIS (OpenAPI 3.0, OBIE 4.0.1)
+- openapi/obie-payment-initiation-openapi.yaml — PIS (OpenAPI 3.0, OBIE 4.0.1)
+- openapi/obie-confirmation-funds-openapi.yaml — CBPII (OpenAPI 3.0, OBIE 4.0.1)
+
+## Authentication & conventions
+
+- Auth: OAuth2 client-credentials (TPP consent creation) + authorization-code (PSU SCA); FAPI profile; mutual-TLS (WAC/eIDAS QWAC).
+- authentication/coventry-building-society-authentication.yml
+- scopes/coventry-building-society-scopes.yml — scopes: accounts, payments, fundsconfirmations
+- Idempotency: x-idempotency-key header, 24-hour retention (payment + funds-confirmation writes).
+- Request signing: x-jws-signature detached JWS on payment writes.
+- Tracing: x-fapi-interaction-id.
+- conventions/coventry-building-society-conventions.yml
+- errors/coventry-building-society-problem-types.yml — OBErrorResponse1 envelope, UK.OBIE.* codes.
+
+## Docs
+
+- [Developer Portal](https://developer.coventrybuildingsociety.co.uk/)
+- [Open Banking (member help)](https://www.coventrybuildingsociety.co.uk/member/help/savings/open-banking.html)
+- [OBIE Read/Write API Standard](https://openbankinguk.github.io/read-write-api-site3/)
+- [FCA Service Metrics API v1.0 spec](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0)

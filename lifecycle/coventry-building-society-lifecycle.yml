@@ -1,0 +1,32 @@
+generated: '2026-07-23'
+method: derived
+source: >-
+  openapi/ servers base paths + apis.yml; OBIE Read/Write API Standard versioning
+  conventions as implemented by Coventry Building Society (CBS v2.0)
+versioning:
+  scheme: uri-path
+  current: v2.0
+  message_standard: OBIE Read/Write API 4.0.1
+  docs: https://developer.coventrybuildingsociety.co.uk/
+  notes: >-
+    Major version carried in the base path (.../open-banking/v2.0/{aisp|pisp|cbpii});
+    Open Data endpoint is a separate v1.0/v1.x line. Underlying schemas track the OBIE
+    Read/Write 4.0.1 message set.
+deprecation:
+  policy_url: https://developer.coventrybuildingsociety.co.uk/
+  sunset_header: unknown
+  notes: >-
+    Version transitions follow the OBIE release/deprecation schedule for the Read/Write
+    Standard; Coventry publishes onboarding and change guidance through its developer portal.
+    No RFC 8594 Sunset/Deprecation header support was confirmed in the contract.
+sla:
+  url: null
+  uptime_target: null
+  notes: >-
+    Operational availability and service-metrics reporting are published via the OBIE
+    Open Data FCA Service Metrics endpoint rather than a public SLA document.
+status_page: null
+support:
+  onboarding_contact: open.banking@thecoventry.co.uk
+  channel: https://developer.coventrybuildingsociety.co.uk/
+deprecated_operations: []

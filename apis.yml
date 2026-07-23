@@ -122,6 +122,52 @@ apis:
   - type: OpenAPI
     url: openapi/obie-confirmation-funds-openapi.yaml
 common:
+- type: AgenticAccess
+  url: agentic-access/coventry-building-society-agentic-access.yml
+- type: Conventions
+  url: conventions/coventry-building-society-conventions.yml
+- type: Idempotency
+  url: conventions/coventry-building-society-conventions.yml
+- type: ErrorCatalog
+  url: errors/coventry-building-society-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/coventry-building-society-lifecycle.yml
+- type: Conformance
+  url: conformance/coventry-building-society-conformance.yml
+- type: Compliance
+  url: https://www.coventrybuildingsociety.co.uk/member/help/savings/open-banking.html
+- type: DataModel
+  url: data-model/coventry-building-society-data-model.yml
+- type: LLMsTxt
+  url: llms/coventry-building-society-llms.txt
+- type: MCPServer
+  url: mcp/coventry-building-society-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/coventry-building-society-tool-crosswalk.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Overlay
+  name: AIS overlay
+  url: overlays/coventry-building-society-account-info-overlay.yaml
+- type: Overlay
+  name: PIS overlay
+  url: overlays/coventry-building-society-payment-initiation-overlay.yaml
+- type: Overlay
+  name: CBPII overlay
+  url: overlays/coventry-building-society-confirmation-funds-overlay.yaml
+- type: Overlay
+  name: Open Data overlay
+  url: overlays/coventry-building-society-opendata-overlay.yaml
+- type: TermsOfService
+  url: https://www.coventrybuildingsociety.co.uk/member/help/terms-of-use.html
+- type: PrivacyPolicy
+  url: https://www.coventrybuildingsociety.co.uk/consumer/help/privacy-policy.html
+- type: DomainSecurity
+  url: security/coventry-building-society-domain-security.yml
+- type: OAuthScopes
+  url: scopes/coventry-building-society-scopes.yml
+- type: Authentication
+  url: authentication/coventry-building-society-authentication.yml
 - type: Website
   url: https://www.coventrybuildingsociety.co.uk/
 - type: DeveloperPortal

@@ -1,0 +1,84 @@
+generated: '2026-07-23'
+method: derived
+source: >-
+  openapi/obie-account-info-openapi.yaml, openapi/obie-payment-initiation-openapi.yaml,
+  openapi/obie-confirmation-funds-openapi.yaml (OBIE Read/Write API Standard, as
+  implemented by Coventry Building Society CBS v2.0)
+summary: >-
+  Cross-cutting request/response conventions for the Coventry Building Society OBIE
+  Read/Write APIs. These follow the UK Open Banking Read/Write API Standard, so the
+  idempotency, request-signing, consent, and error conventions are common across AIS,
+  PIS and CBPII rather than Coventry-proprietary.
+authentication:
+  style: oauth2 + FAPI + mTLS
+  notes: >-
+    FAPI-grade OAuth2 / OIDC. Client credentials grant for TPP-scoped access (consent
+    creation), authorization code grant for PSU-authorised access carrying PSD2 strong
+    customer authentication (SCA). Transport is protected with mutual-TLS presenting an
+    Open Banking WAC or eIDAS QWAC certificate; requests carry a detached JWS message
+    signature (x-jws-signature) for non-repudiation on write operations.
+  see: authentication/coventry-building-society-authentication.yml
+idempotency:
+  supported: true
+  header: x-idempotency-key
+  scope: per POST write operation (payment-order and funds-confirmation creation)
+  retention: 24 hours
+  max_length: 40
+  notes: >-
+    Every request is processed only once per x-idempotency-key value; the key is valid
+    for 24 hours. Mandatory on payment-initiation and funds-confirmation POST endpoints;
+    a replayed key returns the original resource rather than creating a duplicate.
+request_signing:
+  header: x-jws-signature
+  format: detached JWS (RFC 7515)
+  notes: Required on payment-order write requests for message integrity / non-repudiation.
+customer_ip:
+  header: x-customer-user-agent / x-fapi-customer-ip-address
+  notes: FAPI headers conveying the end-user device/IP for risk and SCA exemption decisions.
+tracing:
+  request_header: x-fapi-interaction-id
+  notes: >-
+    Client-supplied UUID echoed back by the ASPSP to correlate a request/response pair
+    across the TPP, the ASPSP and Open Banking for audit and support.
+pagination:
+  style: link-based
+  response_fields:
+    - Links.Self
+    - Links.First
+    - Links.Prev
+    - Links.Next
+    - Links.Last
+  meta_fields:
+    - Meta.TotalPages
+    - Meta.FirstAvailableDateTime
+    - Meta.LastAvailableDateTime
+  notes: >-
+    Collection responses carry a Links object (Self/First/Prev/Next/Last) and a Meta
+    object; transaction queries additionally accept fromBookingDateTime / toBookingDateTime
+    query filters.
+versioning:
+  scheme: uri-path
+  current: v2.0 (Coventry) implementing OBIE Read/Write 4.0.1 message set
+  notes: >-
+    Version carried in the base path (.../open-banking/v2.0/{aisp|pisp|cbpii}). The
+    underlying message/schema version is the OBIE Read/Write 4.0.1 standard.
+  see: lifecycle/coventry-building-society-lifecycle.yml
+error_envelope:
+  media_type: application/json
+  schema: OBErrorResponse1
+  shape: >-
+    Top-level object with Id (audit reference), Code, Message and a required Errors[]
+    array; each OBError1 carries ErrorCode (namespaced UK.OBIE.* code), Message, optional
+    Path (JSON path of the offending field) and Url (remediation link).
+  see: errors/coventry-building-society-problem-types.yml
+rate_limiting:
+  documented: partial
+  signal: HTTP 429 Too Many Requests returned on all operations
+  notes: >-
+    Every operation declares a 429 response; per-TPP polling limits follow the OBIE
+    Operational Guidelines rather than published numeric quotas in the contract.
+consent_model:
+  notes: >-
+    Access is consent-scoped: a TPP first creates a consent resource
+    (account-access-consents / domestic-payment-consents / funds-confirmation-consents),
+    the PSU authorises it via SCA, and the resulting access token is bound to that consent.

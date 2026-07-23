@@ -1,0 +1,27 @@
+generated: '2026-07-23'
+method: searched
+note: >-
+  Live probes of the /.well-known/ discovery surface on all Coventry hosts. No documents
+  were served (all 404). The OBIE OIDC/OAuth discovery documents sit behind the
+  authenticated ASPSP auth server, not on the public developer/connect/www hosts, so no
+  WellKnown catalog pointer is wired. Recorded for auditability.
+hosts:
+  - host: https://developer.coventrybuildingsociety.co.uk
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+  - host: https://connect.coventrybuildingsociety.co.uk
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+  - host: https://www.coventrybuildingsociety.co.uk
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}

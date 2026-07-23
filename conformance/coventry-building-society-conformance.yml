@@ -1,0 +1,51 @@
+generated: '2026-07-23'
+method: derived
+source: >-
+  openapi/ securitySchemes + tags + apis.yml identity; UK Open Banking / OBIE Read/Write
+  API Standard alignment as documented on developer.coventrybuildingsociety.co.uk
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: OpenAPI declares oauth2 securitySchemes (TPPOAuth2Security clientCredentials, PSUOAuth2Security authorizationCode)
+  - id: oidc
+    conforms: true
+    evidence: OBIE Read/Write requires OpenID Connect hybrid flow for PSU authentication and id_token issuance
+  - id: fapi
+    conforms: true
+    evidence: FAPI-grade OAuth2/OIDC profile mandated by the OBIE Read/Write Security Profile (request signing, PKCE-equivalent, s_hash/c_hash)
+  - id: psd2
+    conforms: true
+    evidence: ASPSP under PSD2; AIS/PIS/CBPII with strong customer authentication (SCA) and TPP access
+  - id: obie-read-write
+    conforms: true
+    evidence: Implements OBIE Read/Write API Standard message set (v4.0.1 schemas) for AIS, PIS, CBPII
+  - id: mutual-tls
+    conforms: true
+    evidence: Transport secured with mTLS using Open Banking WAC or eIDAS QWAC certificates
+  - id: eidas
+    conforms: true
+    evidence: Accepts eIDAS QWAC/QSEAL certificates for TPP identification and transport/signing
+  - id: jws-message-signing
+    conforms: true
+    evidence: x-jws-signature detached JWS required on payment write operations (RFC 7515)
+  - id: idempotency
+    conforms: true
+    evidence: x-idempotency-key header with 24-hour retention on write operations
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use the OBIE OBErrorResponse1 envelope (application/json), not application/problem+json
+  - id: json-api
+    conforms: false
+  - id: fhir
+    conforms: false
+regulatory:
+  - authority: Financial Conduct Authority (FCA)
+    role: Authorised and regulated deposit-taker / ASPSP
+  - authority: Prudential Regulation Authority (PRA)
+    role: Prudentially regulated
+  - authority: Open Banking Implementation Entity (OBIE)
+    role: Read/Write API Standard conformance for ASPSP participation
+compliance_note: >-
+  Coventry Building Society is FCA-authorised and PRA-regulated and participates in UK
+  Open Banking under PSD2 and the OBIE standards. These are published regulatory
+  authorisations, surfaced as a Compliance pointer in apis.yml.

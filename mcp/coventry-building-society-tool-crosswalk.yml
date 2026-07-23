@@ -1,0 +1,88 @@
+generated: '2026-07-23'
+method: derived
+source: >-
+  Binds the candidate MCP tool list (mcp/coventry-building-society-mcp.yml) to backing
+  OpenAPI operationIds. No hosted MCP server exists yet, so tools are candidate; each
+  inherits its real inputSchema from the referenced OpenAPI operation's parameters +
+  requestBody.
+surfaces:
+  openapi:
+    - openapi/obie-account-info-openapi.yaml
+    - openapi/obie-payment-initiation-openapi.yaml
+    - openapi/obie-confirmation-funds-openapi.yaml
+    - openapi/obie-opendata-swagger.json
+  graphql: null
+  mcp:
+    url: null
+    status: candidate
+    note: Derived tool list; no live tools/list. A real server must front FAPI/mTLS/SCA consent.
+crosswalk:
+  - tool: get_fca_service_metrics
+    category: open-data
+    rest: ["/personal-current-accounts:get"]
+    binding: rest
+    confidence: high
+    note: Opendata swagger operations are unnamed; bound by path+method.
+  - tool: create_account_access_consent
+    category: consent
+    rest: [CreateAccountAccessConsents]
+    binding: rest
+    confidence: high
+  - tool: get_account_access_consent
+    category: consent
+    rest: [GetAccountAccessConsentsConsentId]
+    binding: rest
+    confidence: high
+  - tool: list_accounts
+    category: accounts
+    rest: [GetAccounts]
+    binding: rest
+    confidence: high
+  - tool: get_account_balances
+    category: accounts
+    rest: [GetAccountsAccountIdBalances]
+    binding: rest
+    confidence: high
+  - tool: get_account_transactions
+    category: accounts
+    rest: [GetAccountsAccountIdTransactions]
+    binding: rest
+    confidence: high
+  - tool: create_domestic_payment_consent
+    category: payments
+    rest: [CreateDomesticPaymentConsents]
+    binding: rest
+    confidence: high
+  - tool: create_domestic_payment
+    category: payments
+    rest: [CreateDomesticPayments]
+    binding: rest
+    confidence: high
+    note: Requires x-idempotency-key and x-jws-signature headers.
+  - tool: create_funds_confirmation_consent
+    category: funds-confirmation
+    rest: [CreateFundsConfirmationConsents]
+    binding: rest
+    confidence: high
+  - tool: create_funds_confirmation
+    category: funds-confirmation
+    rest: [CreateFundsConfirmations]
+    binding: rest
+    confidence: high
+mcp_only: []
+rest_only:
+  - group: account-information
+    note: >-
+      Additional AIS reads not surfaced as candidate tools — beneficiaries, direct-debits,
+      standing-orders, statements, products, parties, offers, scheduled-payments, and the
+      full transactions/balances matrix (29 operations total).
+  - group: payment-initiation
+    note: >-
+      Scheduled, standing-order and file-payment consent/execution flows plus payment-details
+      reads not surfaced as candidate tools (41 operations total).
+coverage:
+  tools_named: 10
+  tools_bound: 10
+  mcp_only: 0
+  rest_ops_total: 78
+  rest_ops_with_tool: 10

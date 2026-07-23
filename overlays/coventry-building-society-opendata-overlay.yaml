@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Coventry Building Society Open Data FCA Service Metrics
+  version: 1.0.0
+extends: openapi/obie-opendata-swagger.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: coventry-building-society
+      x-apievangelist-standard: OBIE Read/Write API Standard (UK Open Banking)
+      x-apievangelist-security-profile: FAPI (OAuth2/OIDC + mutual-TLS + detached JWS)
+      x-apievangelist-idempotency:
+        header: x-idempotency-key
+        retention: 24h
+      x-apievangelist-regulatory: [FCA, PRA, PSD2, OBIE]
+      x-apievangelist-artifacts:
+        conventions: conventions/coventry-building-society-conventions.yml
+        errors: errors/coventry-building-society-problem-types.yml
+        authentication: authentication/coventry-building-society-authentication.yml
+        conformance: conformance/coventry-building-society-conformance.yml
