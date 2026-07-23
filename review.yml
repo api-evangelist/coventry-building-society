@@ -1,0 +1,95 @@
+aid: coventry-building-society
+name: Coventry Building Society
+review:
+  question: Does Coventry Building Society expose a documented public Open Banking API surface, and could an Open Data endpoint be confirmed live?
+  answer: true
+  date: '2026-07-23'
+  reviewer: API Evangelist
+findings:
+  summary: |
+    Coventry Building Society operates a genuine, publicly reachable Open
+    Banking developer portal at https://developer.coventrybuildingsociety.co.uk/
+    (HTTP 200). It is an FCA-authorised ASPSP participating in UK Open Banking
+    under PSD2 / OBIE, but it is NOT one of the CMA9 mandated banks - it is a
+    member-owned building society whose core business is savings and mortgages.
+    The portal documents CBS v2.0 Open Banking APIs across the three OBIE
+    Read/Write families - Account & Transaction Information (AIS), Payment
+    Initiation (PIS), and Confirmation of Funds (CBPII) - plus a public FCA
+    Service Metrics open-data endpoint and a TPP sandbox. Read/Write access is
+    authenticated and onboarding-gated: FAPI-grade OAuth2/OIDC, PSD2 strong
+    customer authentication, and mutual-TLS client authentication using Open
+    Banking WAC or eIDAS QWAC certificates, with registration handled via
+    open.banking@thecoventry.co.uk.
+  openDataProbe:
+    attempted: true
+    confirmedLive200: false
+    host: https://connect.coventrybuildingsociety.co.uk
+    endpointProbed: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0/fca-service-metrics/pca
+    observedStatus: 500
+    note: |
+      The FCA Service Metrics host is real and returned a structured JSON error
+      body ({"status":"500","title":"Internal server error"...}), and the /pca
+      path is recognised (sibling paths returned 404), so this is a live API
+      surface - but a successful 200 + data payload could NOT be confirmed at
+      review time. The generic OBIE Open Data reference paths (/open-banking/
+      v2.3/branches, /atms, v3.1/branches) returned HTTP 404 on this host,
+      consistent with Coventry publishing only the FCA Service Metrics subset
+      rather than the full ATM/branch/current-account open-data set.
+  specProvenance:
+    proprietaryOpenAPIFound: false
+    note: |
+      Coventry publishes its CBS v2.0 API specifications only as PDF documents on
+      the developer portal (account & transaction, payment, security profile, and
+      sandbox PDFs) - no machine-readable bank-proprietary OpenAPI/Swagger is
+      publicly downloadable. The openapi/ specs harvested here are the SHARED
+      OBIE standards that Coventry conforms to, NOT Coventry contracts:
+      obie-account-info-openapi.yaml, obie-payment-initiation-openapi.yaml, and
+      obie-confirmation-funds-openapi.yaml are the OBIE Read/Write API Standard
+      (v4.0.1, OpenAPI 3.0.0) from github.com/OpenBankingUK/read-write-api-specs;
+      obie-opendata-swagger.json is the OBIE Open Data API Standard (v1.3,
+      Swagger 2.0) from github.com/OpenBankingUK/opendata-api-spec-compiled.
+      Coventry's live surface is CBS v2.0, an earlier revision of the same OBIE
+      standard family.
+  authModel:
+    standard: OBIE Read/Write API Standard (FAPI)
+    protocols:
+      - OAuth2 / OpenID Connect (FAPI profile)
+      - PSD2 Strong Customer Authentication (SCA)
+      - Mutual TLS (mTLS) client authentication
+    certificates:
+      - Open Banking WAC
+      - eIDAS QWAC
+    onboarding: Registered TPPs only, via open.banking@thecoventry.co.uk
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+      documented: true
+      note: Public FCA Service Metrics open-data endpoint (unauthenticated); host live but returned HTTP 500 at review time.
+    - protocol: REST
+      scheme: https
+      baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v2.0
+      documented: true
+      note: CBS v2.0 AIS / PIS / CBPII Read/Write endpoints; FAPI-secured, authenticated, onboarding-gated.
+sources:
+  - url: https://developer.coventrybuildingsociety.co.uk/
+    type: DeveloperPortal
+    note: Live (HTTP 200). Lists FCA Service Metrics v1.0.0, AIS/PIS CBS v2.0, and Sandbox specs (PDF).
+  - url: https://www.coventrybuildingsociety.co.uk/member/help/savings/open-banking.html
+    type: Documentation
+    note: Live (HTTP 200). Member-facing Open Banking explainer.
+  - url: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0/fca-service-metrics/pca
+    type: APIReference
+    note: FCA Service Metrics PCA endpoint; returned HTTP 500 JSON error at review time (host live, path recognised).
+  - url: https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+    type: APIReference
+    note: OBIE FCA Service Metrics API Specification v1.0.0 (the standard Coventry's open-data endpoint conforms to).
+  - url: https://github.com/OpenBankingUK/read-write-api-specs
+    type: OpenAPI
+    note: Source of the harvested OBIE Read/Write standard specs (v4.0.1) for AIS, PIS, CBPII.
+  - url: https://github.com/OpenBankingUK/opendata-api-spec-compiled
+    type: OpenAPI
+    note: Source of the harvested OBIE Open Data standard swagger (v1.3).
+  - url: https://www.openbankingtracker.com/provider/coventry-building-society
+    type: Reference
+    note: Third-party profile confirming AIS/PIS/CBPII participation and SWIFT/BIC COBSGB21.

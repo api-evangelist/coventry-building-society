@@ -1,0 +1,139 @@
+aid: coventry-building-society
+url: https://raw.githubusercontent.com/api-evangelist/coventry-building-society/refs/heads/main/apis.yml
+name: Coventry Building Society
+kind: company
+description: >-
+  Coventry Building Society is the United Kingdom's second-largest building
+  society, a member-owned mutual founded in 1884 and headquartered in Coventry,
+  England, offering savings and residential mortgages to millions of members and
+  in January 2025 completing its acquisition of The Co-operative Bank. As an
+  FCA-authorised and PRA-regulated deposit-taker and Account Servicing Payment
+  Service Provider (ASPSP), it participates in UK Open Banking under PSD2 and the
+  Open Banking Implementation Entity (OBIE) standards. It is not one of the CMA9
+  mandated banks, but operates a public developer portal at
+  developer.coventrybuildingsociety.co.uk that publishes CBS v2.0 Open Banking
+  APIs - Account Information Services (AIS), Payment Initiation Services (PIS),
+  and Confirmation of Funds (CBPII) - conformant to the OBIE Read/Write API
+  Standard, alongside a public FCA Service Metrics open-data endpoint and a
+  sandbox for TPP onboarding. Read/Write access is secured with FAPI-grade
+  OAuth2/OIDC, PSD2 strong customer authentication, and mutual-TLS using Open
+  Banking WAC or eIDAS QWAC certificates, with registered TPP onboarding handled
+  via open.banking@thecoventry.co.uk.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Financial Services
+- Banking
+- Building Society
+- Open Banking
+- PSD2
+- OBIE
+- United Kingdom
+- Payments
+- Account Information
+- Confirmation of Funds
+- Fintech
+created: '2026-07-23'
+modified: '2026-07-23'
+specificationVersion: '0.19'
+apis:
+- aid: coventry-building-society:coventry-building-society-open-data-fca-service-metrics-api
+  name: Coventry Building Society Open Data FCA Service Metrics API
+  description: >-
+    Public, unauthenticated OBIE Open Data endpoint publishing FCA service
+    metrics for personal current accounts at Coventry Building Society
+    (CBS v1.0). Live JSON host confirmed responding at the documented base URL;
+    at review time the /pca endpoint returned an HTTP 500 JSON error rather than
+    a 200, so a successful data payload was not confirmed.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Open Data
+  - FCA Service Metrics
+  - Personal Current Accounts
+  properties:
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: OpenAPI
+    url: openapi/obie-opendata-swagger.json
+- aid: coventry-building-society:coventry-building-society-account-information-api
+  name: Coventry Building Society Account & Transaction Information API (AIS)
+  description: >-
+    OBIE Read/Write Account and Transaction Information Services (AIS) API,
+    CBS v2.0, providing consented third-party read access to account, balance,
+    transaction, standing order, direct debit, beneficiary, and product data.
+    FAPI-secured (OAuth2/OIDC, PSD2 SCA, mTLS); documented, authenticated,
+    onboarding required. OpenAPI pointer is the shared OBIE Read/Write standard,
+    not a Coventry proprietary contract.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v2.0/aisp
+  tags:
+  - Account Information
+  - AIS
+  - Open Banking
+  properties:
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+  - type: OpenAPI
+    url: openapi/obie-account-info-openapi.yaml
+- aid: coventry-building-society:coventry-building-society-payment-initiation-api
+  name: Coventry Building Society Payment Initiation API (PIS)
+  description: >-
+    OBIE Read/Write Payment Initiation Services (PIS) API, CBS v2.0, enabling
+    consented third-party initiation of domestic single, scheduled, standing
+    order, and file payments. FAPI-secured (OAuth2/OIDC, PSD2 SCA, mTLS);
+    documented, authenticated, onboarding required. OpenAPI pointer is the shared
+    OBIE Read/Write standard, not a Coventry proprietary contract.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v2.0/pisp
+  tags:
+  - Payment Initiation
+  - PIS
+  - Open Banking
+  properties:
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+  - type: OpenAPI
+    url: openapi/obie-payment-initiation-openapi.yaml
+- aid: coventry-building-society:coventry-building-society-confirmation-of-funds-api
+  name: Coventry Building Society Confirmation of Funds API (CBPII)
+  description: >-
+    OBIE Read/Write Confirmation of Funds Services (CBPII) API, CBS v2.0,
+    allowing a consented card-based payment instrument issuer to confirm whether
+    funds are available on an account. FAPI-secured (OAuth2/OIDC, PSD2 SCA,
+    mTLS); documented, authenticated, onboarding required. OpenAPI pointer is the
+    shared OBIE Read/Write standard, not a Coventry proprietary contract.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v2.0/cbpii
+  tags:
+  - Confirmation of Funds
+  - CBPII
+  - Open Banking
+  properties:
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+  - type: OpenAPI
+    url: openapi/obie-confirmation-funds-openapi.yaml
+common:
+- type: Website
+  url: https://www.coventrybuildingsociety.co.uk/
+- type: DeveloperPortal
+  url: https://developer.coventrybuildingsociety.co.uk/
+- type: Documentation
+  url: https://developer.coventrybuildingsociety.co.uk/
+- type: OpenBanking
+  url: https://www.coventrybuildingsociety.co.uk/member/help/savings/open-banking.html
+- type: LinkedIn
+  url: https://www.linkedin.com/company/coventry-building-society
+- type: Support
+  url: https://developer.coventrybuildingsociety.co.uk/
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
