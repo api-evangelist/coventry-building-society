@@ -34,7 +34,7 @@ tags:
 - Fintech
 created: '2026-07-23'
 modified: '2026-07-23'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: coventry-building-society:coventry-building-society-open-data-fca-service-metrics-api
   name: Coventry Building Society Open Data FCA Service Metrics API
