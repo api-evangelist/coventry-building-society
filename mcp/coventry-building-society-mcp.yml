@@ -1,43 +1,49 @@
 generated: '2026-07-23'
 method: derived
 status: candidate
-source: >-
-  Derived candidate tool list from OpenAPI operations. No official/hosted Coventry
-  Building Society MCP server was found (searched npm @modelcontextprotocol, MCP
-  registries, and the developer portal). This is a governance/design starting point,
-  not a published server. Any real deployment must front the FAPI/mTLS/SCA consent flow.
+source: Derived candidate tool list from OpenAPI operations. No official/hosted Coventry Building Society
+  MCP server was found (searched npm @modelcontextprotocol, MCP registries, and the developer portal).
+  This is a governance/design starting point, not a published server. Any real deployment must front the
+  FAPI/mTLS/SCA consent flow.
 server:
   name: coventry-building-society
   transport: http
   url: null
 tools:
-  - name: get_fca_service_metrics
-    description: Retrieve public FCA service metrics for personal current accounts (unauthenticated Open Data).
-    source_operation: openapi/obie-opendata-swagger.json#/personal-current-accounts:get
-  - name: create_account_access_consent
-    description: Create an AIS account-access consent for a PSU to authorise.
-    source_operation: openapi/obie-account-info-openapi.yaml#CreateAccountAccessConsents
-  - name: get_account_access_consent
-    description: Retrieve the status of an account-access consent.
-    source_operation: openapi/obie-account-info-openapi.yaml#GetAccountAccessConsentsConsentId
-  - name: list_accounts
-    description: List accounts the PSU has consented to share.
-    source_operation: openapi/obie-account-info-openapi.yaml#GetAccounts
-  - name: get_account_balances
-    description: Retrieve balances for a consented account.
-    source_operation: openapi/obie-account-info-openapi.yaml#GetAccountsAccountIdBalances
-  - name: get_account_transactions
-    description: Retrieve transactions for a consented account.
-    source_operation: openapi/obie-account-info-openapi.yaml#GetAccountsAccountIdTransactions
-  - name: create_domestic_payment_consent
-    description: Create a domestic single-payment consent for PSU authorisation.
-    source_operation: openapi/obie-payment-initiation-openapi.yaml#CreateDomesticPaymentConsents
-  - name: create_domestic_payment
-    description: Execute a domestic payment against an authorised consent (idempotent).
-    source_operation: openapi/obie-payment-initiation-openapi.yaml#CreateDomesticPayments
-  - name: create_funds_confirmation_consent
-    description: Create a CBPII funds-confirmation consent.
-    source_operation: openapi/obie-confirmation-funds-openapi.yaml#CreateFundsConfirmationConsents
-  - name: create_funds_confirmation
-    description: Confirm whether funds are available on a consented account.
-    source_operation: openapi/obie-confirmation-funds-openapi.yaml#CreateFundsConfirmations
+- name: get_fca_service_metrics
+  description: Retrieve public FCA service metrics for personal current accounts (unauthenticated Open
+    Data).
+  source_operation: openapi/obie-opendata-swagger.json#/personal-current-accounts:get
+- name: create_account_access_consent
+  description: Create an AIS account-access consent for a PSU to authorise.
+  source_operation: openapi/obie-account-info-openapi.yaml#CreateAccountAccessConsents
+- name: get_account_access_consent
+  description: Retrieve the status of an account-access consent.
+  source_operation: openapi/obie-account-info-openapi.yaml#GetAccountAccessConsentsConsentId
+- name: list_accounts
+  description: List accounts the PSU has consented to share.
+  source_operation: openapi/obie-account-info-openapi.yaml#GetAccounts
+- name: get_account_balances
+  description: Retrieve balances for a consented account.
+  source_operation: openapi/obie-account-info-openapi.yaml#GetAccountsAccountIdBalances
+- name: get_account_transactions
+  description: Retrieve transactions for a consented account.
+  source_operation: openapi/obie-account-info-openapi.yaml#GetAccountsAccountIdTransactions
+- name: create_domestic_payment_consent
+  description: Create a domestic single-payment consent for PSU authorisation.
+  source_operation: openapi/obie-payment-initiation-openapi.yaml#CreateDomesticPaymentConsents
+- name: create_domestic_payment
+  description: Execute a domestic payment against an authorised consent (idempotent).
+  source_operation: openapi/obie-payment-initiation-openapi.yaml#CreateDomesticPayments
+- name: create_funds_confirmation_consent
+  description: Create a CBPII funds-confirmation consent.
+  source_operation: openapi/obie-confirmation-funds-openapi.yaml#CreateFundsConfirmationConsents
+- name: create_funds_confirmation
+  description: Confirm whether funds are available on a consented account.
+  source_operation: openapi/obie-confirmation-funds-openapi.yaml#CreateFundsConfirmations
+deployment:
+  mode: none
+  verified: derived
+  tools: 10
+  checked: '2026-08-12'
+  source: catalog MCP census
