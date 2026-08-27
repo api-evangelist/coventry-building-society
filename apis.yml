@@ -48,91 +48,618 @@ created: '2026-07-23'
 modified: '2026-07-23'
 specificationVersion: '0.23'
 apis:
-- aid: coventry-building-society:coventry-building-society-open-data-fca-service-metrics-api
-  name: Coventry Building Society Open Data FCA Service Metrics API
+- aid: coventry-building-society:coventry-building-society-account-access-consents-api
+  name: Coventry Building Society Account Access Consents API
   description: >-
-    Public, unauthenticated OBIE Open Data endpoint publishing FCA service
-    metrics for personal current accounts at Coventry Building Society
-    (CBS v1.0). Live JSON host confirmed responding at the documented base URL;
-    at review time the /pca endpoint returned an HTTP 500 JSON error rather than
-    a 200, so a successful data payload was not confirmed.
+    The Account Access Consents API from Coventry Building Society — 2 operation(s) for account access
+    consents.
   humanURL: https://developer.coventrybuildingsociety.co.uk/
   baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
   tags:
-  - Open Data
-  - FCA Service Metrics
-  - Personal Current Accounts
+  - Account Access Consents
   properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-account-access-consents-api-openapi.yml
   - type: Documentation
     url: https://developer.coventrybuildingsociety.co.uk/
   - type: APIReference
-    url: https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
-  - type: OpenAPI
-    url: openapi/obie-opendata-swagger.json
-- aid: coventry-building-society:coventry-building-society-account-information-api
-  name: Coventry Building Society Account & Transaction Information API (AIS)
-  description: >-
-    OBIE Read/Write Account and Transaction Information Services (AIS) API,
-    CBS v2.0, providing consented third-party read access to account, balance,
-    transaction, standing order, direct debit, beneficiary, and product data.
-    FAPI-secured (OAuth2/OIDC, PSD2 SCA, mTLS); documented, authenticated,
-    onboarding required. OpenAPI pointer is the shared OBIE Read/Write standard,
-    not a Coventry proprietary contract.
-  humanURL: https://developer.coventrybuildingsociety.co.uk/
-  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v2.0/aisp
-  tags:
-  - Account Information
-  - AIS
-  - Open Banking
-  properties:
-  - type: Documentation
-    url: https://developer.coventrybuildingsociety.co.uk/
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
   - type: APIReference
     url: https://openbankinguk.github.io/read-write-api-site3/
-  - type: OpenAPI
-    url: openapi/obie-account-info-openapi.yaml
-- aid: coventry-building-society:coventry-building-society-payment-initiation-api
-  name: Coventry Building Society Payment Initiation API (PIS)
-  description: >-
-    OBIE Read/Write Payment Initiation Services (PIS) API, CBS v2.0, enabling
-    consented third-party initiation of domestic single, scheduled, standing
-    order, and file payments. FAPI-secured (OAuth2/OIDC, PSD2 SCA, mTLS);
-    documented, authenticated, onboarding required. OpenAPI pointer is the shared
-    OBIE Read/Write standard, not a Coventry proprietary contract.
+- aid: coventry-building-society:coventry-building-society-accounts-api
+  name: Coventry Building Society Accounts API
+  description: The Accounts API from Coventry Building Society — 2 operation(s) for accounts.
   humanURL: https://developer.coventrybuildingsociety.co.uk/
-  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v2.0/pisp
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
   tags:
-  - Payment Initiation
-  - PIS
-  - Open Banking
+  - Accounts
   properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-accounts-api-openapi.yml
   - type: Documentation
     url: https://developer.coventrybuildingsociety.co.uk/
   - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
     url: https://openbankinguk.github.io/read-write-api-site3/
-  - type: OpenAPI
-    url: openapi/obie-payment-initiation-openapi.yaml
-- aid: coventry-building-society:coventry-building-society-confirmation-of-funds-api
-  name: Coventry Building Society Confirmation of Funds API (CBPII)
-  description: >-
-    OBIE Read/Write Confirmation of Funds Services (CBPII) API, CBS v2.0,
-    allowing a consented card-based payment instrument issuer to confirm whether
-    funds are available on an account. FAPI-secured (OAuth2/OIDC, PSD2 SCA,
-    mTLS); documented, authenticated, onboarding required. OpenAPI pointer is the
-    shared OBIE Read/Write standard, not a Coventry proprietary contract.
+- aid: coventry-building-society:coventry-building-society-atm-api
+  name: Coventry Building Society ATM API
+  description: Endpoint for getting ATM data
   humanURL: https://developer.coventrybuildingsociety.co.uk/
-  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v2.0/cbpii
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
   tags:
-  - Confirmation of Funds
-  - CBPII
-  - Open Banking
+  - ATM
   properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-atm-api-openapi.yml
   - type: Documentation
     url: https://developer.coventrybuildingsociety.co.uk/
   - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
     url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-balances-api
+  name: Coventry Building Society Balances API
+  description: The Balances API from Coventry Building Society — 2 operation(s) for balances.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Balances
+  properties:
   - type: OpenAPI
-    url: openapi/obie-confirmation-funds-openapi.yaml
+    url: openapi/coventry-building-society-balances-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-bca-api
+  name: Coventry Building Society BCA API
+  description: Endpoint for getting Business Current Account data
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - BCA
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-bca-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-beneficiaries-api
+  name: Coventry Building Society Beneficiaries API
+  description: The Beneficiaries API from Coventry Building Society — 2 operation(s) for beneficiaries.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Beneficiaries
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-beneficiaries-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-branch-api
+  name: Coventry Building Society Branch API
+  description: Endpoint for getting Branch data
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Branch
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-branch-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-ccc-api
+  name: Coventry Building Society CCC API
+  description: Endpoint for getting Commercial Credit Card data
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - CCC
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-ccc-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-direct-debits-api
+  name: Coventry Building Society Direct Debits API
+  description: The Direct Debits API from Coventry Building Society — 2 operation(s) for direct debits.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Direct Debits
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-direct-debits-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-domestic-payment-consents-api
+  name: Coventry Building Society Domestic Payment Consents API
+  description: >-
+    The Domestic Payment Consents API from Coventry Building Society — 3 operation(s) for domestic payment
+    consents.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Domestic Payment Consents
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-domestic-payment-consents-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-domestic-payments-api
+  name: Coventry Building Society Domestic Payments API
+  description: >-
+    The Domestic Payments API from Coventry Building Society — 3 operation(s) for domestic payments.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Domestic Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-domestic-payments-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: >-
+    coventry-building-society:coventry-building-society-domestic-scheduled-payment-consents-api
+  name: Coventry Building Society Domestic Scheduled Payment Consents API
+  description: >-
+    The Domestic Scheduled Payment Consents API from Coventry Building Society — 2 operation(s) for domestic
+    scheduled payment consents.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Domestic Scheduled Payment Consents
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-domestic-scheduled-payment-consents-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-domestic-scheduled-payments-api
+  name: Coventry Building Society Domestic Scheduled Payments API
+  description: >-
+    The Domestic Scheduled Payments API from Coventry Building Society — 3 operation(s) for domestic scheduled
+    payments.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Domestic Scheduled Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-domestic-scheduled-payments-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-domestic-standing-order-consents-api
+  name: Coventry Building Society Domestic Standing Order Consents API
+  description: >-
+    The Domestic Standing Order Consents API from Coventry Building Society — 2 operation(s) for domestic
+    standing order consents.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Domestic Standing Order Consents
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-domestic-standing-order-consents-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-domestic-standing-orders-api
+  name: Coventry Building Society Domestic Standing Orders API
+  description: >-
+    The Domestic Standing Orders API from Coventry Building Society — 3 operation(s) for domestic standing
+    orders.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Domestic Standing Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-domestic-standing-orders-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-file-payment-consents-api
+  name: Coventry Building Society File Payment Consents API
+  description: >-
+    The File Payment Consents API from Coventry Building Society — 3 operation(s) for file payment consents.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - File Payment Consents
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-file-payment-consents-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-file-payments-api
+  name: Coventry Building Society File Payments API
+  description: The File Payments API from Coventry Building Society — 4 operation(s) for file payments.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - File Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-file-payments-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-funds-confirmation-consents-api
+  name: Coventry Building Society Funds Confirmation Consents API
+  description: >-
+    The Funds Confirmation Consents API from Coventry Building Society — 2 operation(s) for funds confirmation
+    consents.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Funds Confirmation Consents
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-funds-confirmation-consents-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-funds-confirmations-api
+  name: Coventry Building Society Funds Confirmations API
+  description: >-
+    The Funds Confirmations API from Coventry Building Society — 1 operation(s) for funds confirmations.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Funds Confirmations
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-funds-confirmations-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-international-payment-consents-api
+  name: Coventry Building Society International Payment Consents API
+  description: >-
+    The International Payment Consents API from Coventry Building Society — 3 operation(s) for international
+    payment consents.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - International Payment Consents
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-international-payment-consents-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-international-payments-api
+  name: Coventry Building Society International Payments API
+  description: >-
+    The International Payments API from Coventry Building Society — 3 operation(s) for international payments.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - International Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-international-payments-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-international-scheduled-payments-api
+  name: Coventry Building Society International Scheduled Payments API
+  description: >-
+    The International Scheduled Payments API from Coventry Building Society — 3 operation(s) for international
+    scheduled payments.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - International Scheduled Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-international-scheduled-payments-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: >-
+    coventry-building-society:coventry-building-society-international-scheduled-payments-consents-api
+  name: Coventry Building Society International Scheduled Payments Consents API
+  description: >-
+    The International Scheduled Payments Consents API from Coventry Building Society — 3 operation(s)
+    for international scheduled payments consents.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - International Scheduled Payments Consents
+  properties:
+  - type: OpenAPI
+    url: >-
+      openapi/coventry-building-society-international-scheduled-payments-consents-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-international-standing-orders-api
+  name: Coventry Building Society International Standing Orders API
+  description: >-
+    The International Standing Orders API from Coventry Building Society — 3 operation(s) for international
+    standing orders.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - International Standing Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-international-standing-orders-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: >-
+    coventry-building-society:coventry-building-society-international-standing-orders-consents-api
+  name: Coventry Building Society International Standing Orders Consents API
+  description: >-
+    The International Standing Orders Consents API from Coventry Building Society — 2 operation(s) for
+    international standing orders consents.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - International Standing Orders Consents
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-international-standing-orders-consents-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-offers-api
+  name: Coventry Building Society Offers API
+  description: The Offers API from Coventry Building Society — 2 operation(s) for offers.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Offers
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-offers-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-parties-api
+  name: Coventry Building Society Parties API
+  description: The Parties API from Coventry Building Society — 3 operation(s) for parties.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Parties
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-parties-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-pca-api
+  name: Coventry Building Society PCA API
+  description: Endpoint for getting Personal Current Account data
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - PCA
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-pca-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-products-api
+  name: Coventry Building Society Products API
+  description: The Products API from Coventry Building Society — 2 operation(s) for products.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-products-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-scheduled-payments-api
+  name: Coventry Building Society Scheduled Payments API
+  description: >-
+    The Scheduled Payments API from Coventry Building Society — 2 operation(s) for scheduled payments.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Scheduled Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-scheduled-payments-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-sme-api
+  name: Coventry Building Society SME API
+  description: Endpoint for getting Unsecured SME Loan data
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - SME
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-sme-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-standing-orders-api
+  name: Coventry Building Society Standing Orders API
+  description: >-
+    The Standing Orders API from Coventry Building Society — 2 operation(s) for standing orders.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Standing Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-standing-orders-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-statements-api
+  name: Coventry Building Society Statements API
+  description: The Statements API from Coventry Building Society — 5 operation(s) for statements.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Statements
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-statements-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
+- aid: coventry-building-society:coventry-building-society-transactions-api
+  name: Coventry Building Society Transactions API
+  description: The Transactions API from Coventry Building Society — 2 operation(s) for transactions.
+  humanURL: https://developer.coventrybuildingsociety.co.uk/
+  baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/coventry-building-society-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://developer.coventrybuildingsociety.co.uk/
+  - type: APIReference
+    url: >-
+      https://openbanking.atlassian.net/wiki/spaces/DZ/pages/195068329/FCA+Service+Metrics+API+Specification+-+v1.0.0
+  - type: APIReference
+    url: https://openbankinguk.github.io/read-write-api-site3/
 common:
 - type: AgenticAccess
   url: agentic-access/coventry-building-society-agentic-access.yml
