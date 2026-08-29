@@ -1,0 +1,212 @@
+slug: coventry-building-society
+provider: Coventry Building Society
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 21
+edges:
+- tag: Domestic Payment Consents
+  spec_file: coventry-building-society-domestic-payment-consents-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.9
+  evidence: POST /domestic-payment-consents  Create a Domestic Payment Consent; "Confirm availability
+    of funds for a Domestic Payment"
+  reason: Open Banking payment initiation consent capture and authorisation, including funds confirmation
+    — plainly payment instruction capture, validation and authorisation.
+- tag: Domestic Payments
+  spec_file: coventry-building-society-domestic-payments-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.9
+  evidence: POST /domestic-payments  CreateDomesticPayments  Initiate a Domestic Payment
+  reason: Payment Initiation API creating and retrieving domestic payment instructions; core payment initiation
+    capability.
+- tag: Domestic Standing Orders
+  spec_file: coventry-building-society-domestic-standing-orders-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.9
+  evidence: POST /domestic-standing-orders  "Submit a Domestic Standing Order"; openapi title "Payment
+    Initiation Domestic Standing Orders API"
+  reason: UK Open Banking payment initiation surface for domestic recurring standing orders — instruction
+    capture and submission by an ASPSP, i.e. payment initiation management.
+- tag: International Payments
+  spec_file: coventry-building-society-international-payments-api-openapi.yml
+  capability_id: BC-1340.40
+  capability_id_l1: BC-1340
+  capability_name: Cross-Border Payment Management
+  confidence: 0.9
+  evidence: POST /international-payments "Initiate an International Payment"
+  reason: Initiation and status retrieval of international (cross-border) payments by an ASPSP.
+- tag: Domestic Scheduled Payment Consents
+  spec_file: coventry-building-society-domestic-scheduled-payment-consents-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.88
+  evidence: POST /domestic-scheduled-payment-consents  Create a Domestic Scheduled Payment Consent
+  reason: Consent/authorisation capture for future-dated domestic payment instructions — payment initiation
+    authorisation.
+- tag: Domestic Scheduled Payments
+  spec_file: coventry-building-society-domestic-scheduled-payments-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.88
+  evidence: POST /domestic-scheduled-payments  Initiate a Domestic Scheduled Payment
+  reason: Initiation and retrieval of scheduled domestic payment instructions under the Payment Initiation
+    specification.
+- tag: International Scheduled Payments
+  spec_file: coventry-building-society-international-scheduled-payments-api-openapi.yml
+  capability_id: BC-1340.40
+  capability_id_l1: BC-1340
+  capability_name: Cross-Border Payment Management
+  confidence: 0.88
+  evidence: POST /international-scheduled-payments "Initiate an International Scheduled Payment"
+  reason: Future-dated cross-border payment initiation under the Payment Initiation API.
+- tag: Domestic Standing Order Consents
+  spec_file: coventry-building-society-domestic-standing-order-consents-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.85
+  evidence: POST /domestic-standing-order-consents  Create a Domestic Standing Order Consent; OBFrequency6,
+    NumberOfPayments
+  reason: Consent capture and authorisation for recurring standing order payment instructions — payment
+    initiation management.
+- tag: File Payment Consents
+  spec_file: coventry-building-society-file-payment-consents-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.85
+  evidence: '"Create a File Payment Consent"; "Upload a File for a ConsentId"; schema OBWriteFileConsentResponse4'
+  reason: Consent creation and authorisation for bulk/file payment instructions — the authorisation step
+    of payment initiation, not generic technical plumbing.
+- tag: File Payments
+  spec_file: coventry-building-society-file-payments-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.85
+  evidence: POST /file-payments "Submit a File Payment"; "Get payment details for a File Payment"
+  reason: Submission and status retrieval of bulk file payment instructions under the Payment Initiation
+    API — payment instruction capture and validation.
+- tag: International Payment Consents
+  spec_file: coventry-building-society-international-payment-consents-api-openapi.yml
+  capability_id: BC-1340.40
+  capability_id_l1: BC-1340
+  capability_name: Cross-Border Payment Management
+  confidence: 0.85
+  evidence: '"Create an International Payment Consent"; "Confirm Funds Availability for an International
+    Payment"'
+  reason: Consent and funds-confirmation for cross-border payment instructions under the Payment Initiation
+    API — cross-border payment management.
+- tag: International Scheduled Payments Consents
+  spec_file: coventry-building-society-international-scheduled-payments-consents-api-openapi.yml
+  capability_id: BC-1340.40
+  capability_id_l1: BC-1340
+  capability_name: Cross-Border Payment Management
+  confidence: 0.85
+  evidence: '"Create an International Scheduled Payment Consent"; "Confirm Funds Availability for an International
+    Scheduled Payment"'
+  reason: Consent capture and funds confirmation for future-dated cross-border payments — cross-border
+    payment initiation/authorisation.
+- tag: International Standing Orders
+  spec_file: coventry-building-society-international-standing-orders-api-openapi.yml
+  capability_id: BC-1340.40
+  capability_id_l1: BC-1340
+  capability_name: Cross-Border Payment Management
+  confidence: 0.85
+  evidence: POST /international-standing-orders "Submit an International Standing Order"; schema OBWriteInternationalStandingOrderResponse7
+  reason: Recurring cross-border payment instruction submission and status enquiry under the Payment Initiation
+    API.
+- tag: International Standing Orders Consents
+  spec_file: coventry-building-society-international-standing-orders-consents-api-openapi.yml
+  capability_id: BC-1340.40
+  capability_id_l1: BC-1340
+  capability_name: Cross-Border Payment Management
+  confidence: 0.82
+  evidence: '"Create an International Standing Order Consent"; "Get an International Standing Order Consent"'
+  reason: Authorisation/consent for recurring cross-border payment instructions — part of cross-border
+    payment initiation.
+- tag: ATM
+  spec_file: coventry-building-society-atm-api-openapi.yml
+  capability_id: BC-1300.50
+  capability_id_l1: BC-1300
+  capability_name: Banking Channels Management
+  confidence: 0.8
+  evidence: openapi title 'Open Data ATM API'; GET /atms
+  reason: Open Data endpoint publishing the society's ATM estate/locations — banking channel (ATM) information,
+    which is channels management. Thin operation detail keeps confidence moderate.
+- tag: Parties
+  spec_file: coventry-building-society-parties-api-openapi.yml
+  capability_id: BC-1300.40
+  capability_id_l1: BC-1300
+  capability_name: Customer Information Management
+  confidence: 0.78
+  evidence: 'GET /party  GetParty  Get Party; schemas: FullLegalName, PartyNumber, OBPartyRelationships1,
+    EmailAddress'
+  reason: Open Banking Parties resource returns customer/party identity and contact attributes for an
+    account holder, i.e. banking customer information data, not onboarding or KYC processing.
+- tag: Accounts
+  spec_file: coventry-building-society-accounts-api-openapi.yml
+  capability_id: BC-1330.10
+  capability_id_l1: BC-1330
+  capability_name: Deposit Account Management
+  confidence: 0.75
+  evidence: GET /accounts  GetAccounts  Get Accounts; schema OBAccount6, OBInternalAccountType1Code, OBInternalAccountStatus1Code
+  reason: Open Banking Account Information API exposing customer account details for a deposit-taker;
+    closest fit is deposit account information/management. Some ambiguity between account information
+    servicing and deposit account management, hence moderate confidence.
+- tag: Products
+  spec_file: coventry-building-society-products-api-openapi.yml
+  capability_id: BC-1310.10
+  capability_id_l1: BC-1310
+  capability_name: Product Catalogue Management
+  confidence: 0.75
+  evidence: 'GET /products  GetProducts  Get Products; schemas: OB_FeeFrequency1Code_3, OB_InterestRateType1Code_1,
+    OB_OverdraftFeeType1Code'
+  reason: Exposes the banking product master with fee, rate and overdraft parameters for accounts — product
+    catalogue/parameter publication. Chose catalogue as the primary reading since the operations retrieve
+    product records.
+- tag: BCA
+  spec_file: coventry-building-society-bca-api-openapi.yml
+  capability_id: BC-1310.10
+  capability_id_l1: BC-1310
+  capability_name: Product Catalogue Management
+  confidence: 0.7
+  evidence: GET /business-current-accounts ; "Open Data BCA API" — "Latest Swagger specification for OpenData"
+  reason: UK Open Data endpoint publishing the institution's business current account product information
+    (rates, features) — a public product catalogue feed rather than customer accounts.
+- tag: Branch
+  spec_file: coventry-building-society-branch-api-openapi.yml
+  capability_id: BC-1300.50
+  capability_id_l1: BC-1300
+  capability_name: Banking Channels Management
+  confidence: 0.7
+  evidence: GET /branches ; "Open Data Branch API"
+  reason: Open Data publication of branch locations and services — branch channel information, mapping
+    to Banking Channels Management.
+- tag: Direct Debits
+  spec_file: coventry-building-society-direct-debits-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.7
+  evidence: GET /accounts/{AccountId}/direct-debits  Get Direct Debits for an AccountId; OBMandateRelatedInformation1,
+    ExternalMandateStatus1Code
+  reason: Direct debit mandates registered against a customer account — recurring payment instruction/mandate
+    information, within payments management.

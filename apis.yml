@@ -673,6 +673,9 @@ apis:
   - type: APIReference
     url: https://openbankinguk.github.io/read-write-api-site3/
 common:
+- type: CapabilityMap
+  url: capabilities/coventry-building-society-capability-edges.yml
+  name: Coventry Building Society Business Capability Map
 - type: AgenticAccess
   url: agentic-access/coventry-building-society-agentic-access.yml
 - type: Conventions
