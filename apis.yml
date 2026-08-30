@@ -85,6 +85,8 @@ apis:
   humanURL: https://developer.coventrybuildingsociety.co.uk/
   baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -574,6 +576,8 @@ apis:
   humanURL: https://developer.coventrybuildingsociety.co.uk/
   baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
@@ -661,6 +665,8 @@ apis:
   humanURL: https://developer.coventrybuildingsociety.co.uk/
   baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
