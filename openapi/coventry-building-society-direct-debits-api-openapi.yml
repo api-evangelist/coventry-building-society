@@ -4,9 +4,7 @@ info:
   description: 'Swagger for Account and Transaction API Specification.
 
 
-    **Please Note**: There are no optional fields, if a field is not marked as “Required” it is a Conditional field.
-
-    '
+    **Please Note**: There are no optional fields, if a field is not marked as “Required” it is a Conditional field.'
   termsOfService: https://www.openbanking.org.uk/terms
   contact:
     name: Service Desk
@@ -95,64 +93,42 @@ paths:
         - accounts
 components:
   schemas:
-    ExternalMandateStatus1Code:
-      description: Specifies the status of the standing order in code form. For a full list of enumeration values refer to 'ExternalMandateStatus1Code' in *ISO_External_Codeset* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
-      type: string
-      enum:
-      - ACTV
-      - CANC
-      - EXPI
-      - SUSP
-      example: ACTV
-    ISODateTime:
-      description: "All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00"
-      type: string
-      format: date-time
-    Links:
+    OBReadDirectDebit2:
       type: object
-      description: Links relevant to the payload
-      properties:
-        Self:
-          type: string
-          format: uri
-        First:
-          type: string
-          format: uri
-        Prev:
-          type: string
-          format: uri
-        Next:
-          type: string
-          format: uri
-        Last:
-          type: string
-          format: uri
-      additionalProperties: false
       required:
-      - Self
-    Meta:
-      title: MetaData
-      type: object
-      description: Meta Data relevant to the payload
+      - Data
       properties:
-        TotalPages:
-          type: integer
-          format: int32
-        FirstAvailableDateTime:
-          $ref: '#/components/schemas/ISODateTime'
-        LastAvailableDateTime:
-          $ref: '#/components/schemas/ISODateTime'
+        Data:
+          type: object
+          properties:
+            DirectDebit:
+              type: array
+              items:
+                type: object
+                description: Account to or from which a cash entry is made.
+                required:
+                - AccountId
+                - Name
+                properties:
+                  AccountId:
+                    $ref: '#/components/schemas/AccountId'
+                  DirectDebitId:
+                    $ref: '#/components/schemas/DirectDebitId'
+                  DirectDebitStatusCode:
+                    $ref: '#/components/schemas/ExternalMandateStatus1Code'
+                  MandateRelatedInformation:
+                    $ref: '#/components/schemas/OBMandateRelatedInformation1'
+                  Name:
+                    $ref: '#/components/schemas/Name_2'
+                  PreviousPaymentDateTime:
+                    $ref: '#/components/schemas/PreviousPaymentDateTime'
+                  PreviousPaymentAmount:
+                    $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmount_0'
+        Links:
+          $ref: '#/components/schemas/Links'
+        Meta:
+          $ref: '#/components/schemas/Meta'
       additionalProperties: false
-    PreviousPaymentDateTime:
-      description: "Date of most recent direct debit collection. All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00"
-      type: string
-      format: date-time
-    OBExternalStatusReason1Code:
-      description: Low level textual error code, for all enum values see `OBExternalStatusReason1Code` in *OB_Internal_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
-      type: string
-      minLength: 4
-      maxLength: 4
-      example: U001
     OBMandateRelatedInformation1:
       type: object
       description: Provides further details of the mandate signed between the creditor and the debtor.
@@ -200,6 +176,66 @@ components:
       - FIXE
       - USGB
       - VARI
+    OBFrequency6:
+      description: Regularity with which credit transfer instructions are to be created and processed
+      type: object
+      required:
+      - Type
+      properties:
+        Type:
+          oneOf:
+          - $ref: '#/components/schemas/OBFrequency6Code'
+          - $ref: '#/components/schemas/Frequency_1'
+        CountPerPeriod:
+          description: 'Number of instructions to be created and processed during the specified period. Specifies a frequency in terms of a count per period within a specified frequency type. Note: should not be used alongside `PointInTime`'
+          type: integer
+          example: 1
+          format: int32
+        PointInTime:
+          $ref: '#/components/schemas/PointInTime'
+    PointInTime:
+      description: 'Exact2NumericText - Further information on the exact point in time the event should take place. Specifies a frequency in terms of an exact point in time or moment within a specified frequency type. Note: should not be used alongside `CountPerPeriod`.'
+      type: string
+      example: '00'
+      maxLength: 2
+    ExternalMandateStatus1Code:
+      description: Specifies the status of the standing order in code form. For a full list of enumeration values refer to 'ExternalMandateStatus1Code' in *ISO_External_Codeset* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
+      type: string
+      enum:
+      - ACTV
+      - CANC
+      - EXPI
+      - SUSP
+      example: ACTV
+    OBActiveOrHistoricCurrencyAndAmount_0:
+      type: object
+      required:
+      - Amount
+      - Currency
+      description: The amount of the most recent direct debit collection.
+      properties:
+        Amount:
+          $ref: '#/components/schemas/OBActiveCurrencyAndAmount_SimpleType'
+        Currency:
+          $ref: '#/components/schemas/ActiveOrHistoricCurrencyCode_1'
+    Meta:
+      title: MetaData
+      type: object
+      description: Meta Data relevant to the payload
+      properties:
+        TotalPages:
+          type: integer
+          format: int32
+        FirstAvailableDateTime:
+          $ref: '#/components/schemas/ISODateTime'
+        LastAvailableDateTime:
+          $ref: '#/components/schemas/ISODateTime'
+      additionalProperties: false
+    Name_2:
+      description: Name of Service User.
+      type: string
+      minLength: 1
+      maxLength: 70
     Frequency_1:
       description: 'Individual Definitions:
 
@@ -266,57 +302,6 @@ components:
         ^(NotKnown)$|^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlDay:((0[2-9])|([1-2][0-9])|3[0-1]))$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$'
       type: string
       pattern: ^(NotKnown)$|^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlDay:((0[2-9])|([1-2][0-9])|3[0-1]))$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$
-    PointInTime:
-      description: 'Exact2NumericText - Further information on the exact point in time the event should take place. Specifies a frequency in terms of an exact point in time or moment within a specified frequency type. Note: should not be used alongside `CountPerPeriod`.'
-      type: string
-      example: '00'
-      maxLength: 2
-    OBActiveOrHistoricCurrencyAndAmount_0:
-      type: object
-      required:
-      - Amount
-      - Currency
-      description: The amount of the most recent direct debit collection.
-      properties:
-        Amount:
-          $ref: '#/components/schemas/OBActiveCurrencyAndAmount_SimpleType'
-        Currency:
-          $ref: '#/components/schemas/ActiveOrHistoricCurrencyCode_1'
-    AccountId:
-      description: A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.
-      type: string
-      example: '22289'
-      minLength: 1
-      maxLength: 40
-    OBError1:
-      type: object
-      properties:
-        ErrorCode:
-          $ref: '#/components/schemas/OBExternalStatusReason1Code'
-        Message:
-          description: 'A description of the error that occurred. e.g., ''A mandatory field isn''t supplied'' or ''RequestedExecutionDateTime must be in future''
-
-            OBL doesn''t standardise this field'
-          type: string
-          minLength: 1
-          maxLength: 500
-        Path:
-          description: Recommended but optional reference to the JSON Path of the field with error, e.g., Data.Initiation.InstructedAmount.Currency
-          type: string
-          minLength: 1
-          maxLength: 500
-        Url:
-          description: URL to help remediate the problem, or provide more information, or to API Reference, or help etc
-          type: string
-      required:
-      - ErrorCode
-      additionalProperties: false
-      minProperties: 1
-    OBActiveCurrencyAndAmount_SimpleType:
-      description: A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.
-      type: string
-      example: '1209.06'
-      pattern: ^\d{1,13}$|^\d{1,13}\.\d{1,5}$
     OBErrorResponse1:
       description: An array of detail error codes, and messages, and URLs to documentation to help remediation.
       type: object
@@ -346,98 +331,6 @@ components:
       required:
       - Errors
       additionalProperties: false
-    Name_2:
-      description: Name of Service User.
-      type: string
-      minLength: 1
-      maxLength: 70
-    ActiveOrHistoricCurrencyCode_1:
-      description: A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 "Codes for the representation of currencies and funds".
-      type: string
-      example: GBP
-      pattern: ^[A-Z]{3,3}$
-    DirectDebitId:
-      description: A unique and immutable identifier used to identify the direct debit resource. This identifier has no meaning to the account owner.
-      type: string
-      minLength: 1
-      maxLength: 40
-    OBReadDirectDebit2:
-      type: object
-      required:
-      - Data
-      properties:
-        Data:
-          type: object
-          properties:
-            DirectDebit:
-              type: array
-              items:
-                type: object
-                description: Account to or from which a cash entry is made.
-                required:
-                - AccountId
-                - Name
-                properties:
-                  AccountId:
-                    $ref: '#/components/schemas/AccountId'
-                  DirectDebitId:
-                    $ref: '#/components/schemas/DirectDebitId'
-                  DirectDebitStatusCode:
-                    $ref: '#/components/schemas/ExternalMandateStatus1Code'
-                  MandateRelatedInformation:
-                    $ref: '#/components/schemas/OBMandateRelatedInformation1'
-                  Name:
-                    $ref: '#/components/schemas/Name_2'
-                  PreviousPaymentDateTime:
-                    $ref: '#/components/schemas/PreviousPaymentDateTime'
-                  PreviousPaymentAmount:
-                    $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmount_0'
-        Links:
-          $ref: '#/components/schemas/Links'
-        Meta:
-          $ref: '#/components/schemas/Meta'
-      additionalProperties: false
-    OBFrequency6Code:
-      description: For a full list of values see `OBFrequency6Code` in *OB_Internal_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
-      type: string
-      example: MNTH
-      enum:
-      - ADHO
-      - YEAR
-      - DAIL
-      - FRTN
-      - INDA
-      - MNTH
-      - QURT
-      - MIAN
-      - WEEK
-      - WODL
-      - FOWK
-      - TWMH
-      - FOMH
-      - FIMH
-      - ALMH
-      - NONE
-      - LWMH
-      - LXMH
-      - TWYR
-    OBFrequency6:
-      description: Regularity with which credit transfer instructions are to be created and processed
-      type: object
-      required:
-      - Type
-      properties:
-        Type:
-          oneOf:
-          - $ref: '#/components/schemas/OBFrequency6Code'
-          - $ref: '#/components/schemas/Frequency_1'
-        CountPerPeriod:
-          description: 'Number of instructions to be created and processed during the specified period. Specifies a frequency in terms of a count per period within a specified frequency type. Note: should not be used alongside `PointInTime`'
-          type: integer
-          example: 1
-          format: int32
-        PointInTime:
-          $ref: '#/components/schemas/PointInTime'
     ExternalCategoryPurpose1Code:
       description: Enumeration of codes that outlines the type of purpose behind a transaction, payment or risk.  For all enum values see `ExternalCategoryPurpose1Code` in *ISO_External_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
       type: string
@@ -486,199 +379,111 @@ components:
       - VOST
       - WHLD
       - ZABA
-  parameters:
-    x-client-id:
-      in: header
-      name: x-client-id
-      required: false
-      description: "Only used if an ASPSP requires the client ID in order to return rate limit headers. \n\nTPPs __must__ refer to ASPSP developer portals for further information on any rate limit policies, if the headers are supported and any additional requirements.\n\nThis header __must not__ be used for client authentication\n"
-      schema:
-        type: string
-    x-fapi-customer-ip-address:
-      in: header
-      name: x-fapi-customer-ip-address
-      required: false
-      description: The PSU's IP address if the PSU is currently logged in with the TPP.
-      schema:
-        type: string
-    x-fapi-interaction-id:
-      in: header
-      name: x-fapi-interaction-id
-      required: false
-      description: An RFC4122 UID used as a correlation id.
-      schema:
-        type: string
+    ActiveOrHistoricCurrencyCode_1:
+      description: A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 "Codes for the representation of currencies and funds".
+      type: string
+      example: GBP
+      pattern: ^[A-Z]{3,3}$
     AccountId:
-      name: AccountId
-      in: path
-      description: AccountId
-      required: true
-      schema:
-        type: string
-    Authorization:
-      in: header
-      name: Authorization
-      required: true
-      description: An Authorisation Token as per https://tools.ietf.org/html/rfc6750
-      schema:
-        type: string
-    x-fapi-auth-date:
-      in: header
-      name: x-fapi-auth-date
-      required: false
-      description: "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC"
-      schema:
-        type: string
-        pattern: ^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4} \d{2}:\d{2}:\d{2} (GMT|UTC)$
-    x-customer-user-agent:
-      in: header
-      name: x-customer-user-agent
-      description: Indicates the user-agent that the PSU is using.
-      required: false
-      schema:
-        type: string
-  responses:
-    406Error:
-      description: Not Acceptable
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-    500Error:
-      description: Internal Server Error
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/OBErrorResponse1'
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBErrorResponse1'
-        application/jose+jwe:
-          schema:
-            $ref: '#/components/schemas/OBErrorResponse1'
-    200DirectDebitsRead:
-      description: Direct Debits Read
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-        RateLimit-Policy:
-          $ref: '#/components/headers/RateLimit-Policy'
-        RateLimit:
-          $ref: '#/components/headers/RateLimit'
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/OBReadDirectDebit2'
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBReadDirectDebit2'
-        application/jose+jwe:
-          schema:
-            $ref: '#/components/schemas/OBReadDirectDebit2'
-    403Error:
-      description: Forbidden
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/OBErrorResponse1'
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBErrorResponse1'
-        application/jose+jwe:
-          schema:
-            $ref: '#/components/schemas/OBErrorResponse1'
-    200AccountsAccountIdDirectDebitsRead:
-      description: Direct Debits Read
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-        RateLimit-Policy:
-          $ref: '#/components/headers/RateLimit-Policy'
-        RateLimit:
-          $ref: '#/components/headers/RateLimit'
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/OBReadDirectDebit2'
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBReadDirectDebit2'
-        application/jose+jwe:
-          schema:
-            $ref: '#/components/schemas/OBReadDirectDebit2'
-    404Error:
-      description: Not found
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-    400Error:
-      description: Bad request
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/OBErrorResponse1'
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OBErrorResponse1'
-        application/jose+jwe:
-          schema:
-            $ref: '#/components/schemas/OBErrorResponse1'
-    401Error:
-      description: Unauthorized
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
-    429Error:
-      description: Too Many Requests
-      headers:
-        Retry-After:
-          description: Number in seconds to wait
-          schema:
-            type: integer
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          schema:
-            type: string
-    405Error:
-      description: Method Not Allowed
-      headers:
-        x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
-          required: true
-          schema:
-            type: string
+      description: A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.
+      type: string
+      example: '22289'
+      minLength: 1
+      maxLength: 40
+    OBExternalStatusReason1Code:
+      description: Low level textual error code, for all enum values see `OBExternalStatusReason1Code` in *OB_Internal_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
+      type: string
+      minLength: 4
+      maxLength: 4
+      example: U001
+    PreviousPaymentDateTime:
+      description: "Date of most recent direct debit collection. All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00"
+      type: string
+      format: date-time
+    ISODateTime:
+      description: "All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00"
+      type: string
+      format: date-time
+    DirectDebitId:
+      description: A unique and immutable identifier used to identify the direct debit resource. This identifier has no meaning to the account owner.
+      type: string
+      minLength: 1
+      maxLength: 40
+    OBActiveCurrencyAndAmount_SimpleType:
+      description: A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.
+      type: string
+      example: '1209.06'
+      pattern: ^\d{1,13}$|^\d{1,13}\.\d{1,5}$
+    OBFrequency6Code:
+      description: For a full list of values see `OBFrequency6Code` in *OB_Internal_CodeSet* [here](https://github.com/OpenBankingUK/External_Internal_CodeSets)
+      type: string
+      example: MNTH
+      enum:
+      - ADHO
+      - YEAR
+      - DAIL
+      - FRTN
+      - INDA
+      - MNTH
+      - QURT
+      - MIAN
+      - WEEK
+      - WODL
+      - FOWK
+      - TWMH
+      - FOMH
+      - FIMH
+      - ALMH
+      - NONE
+      - LWMH
+      - LXMH
+      - TWYR
+    Links:
+      type: object
+      description: Links relevant to the payload
+      properties:
+        Self:
+          type: string
+          format: uri
+        First:
+          type: string
+          format: uri
+        Prev:
+          type: string
+          format: uri
+        Next:
+          type: string
+          format: uri
+        Last:
+          type: string
+          format: uri
+      additionalProperties: false
+      required:
+      - Self
+    OBError1:
+      type: object
+      properties:
+        ErrorCode:
+          $ref: '#/components/schemas/OBExternalStatusReason1Code'
+        Message:
+          description: 'A description of the error that occurred. e.g., ''A mandatory field isn''t supplied'' or ''RequestedExecutionDateTime must be in future''
+
+            OBL doesn''t standardise this field'
+          type: string
+          minLength: 1
+          maxLength: 500
+        Path:
+          description: Recommended but optional reference to the JSON Path of the field with error, e.g., Data.Initiation.InstructedAmount.Currency
+          type: string
+          minLength: 1
+          maxLength: 500
+        Url:
+          description: URL to help remediate the problem, or provide more information, or to API Reference, or help etc
+          type: string
+      required:
+      - ErrorCode
+      additionalProperties: false
+      minProperties: 1
   headers:
     RateLimit-Policy:
       required: false
@@ -722,6 +527,199 @@ components:
         '
       schema:
         type: string
+  parameters:
+    x-fapi-customer-ip-address:
+      in: header
+      name: x-fapi-customer-ip-address
+      required: false
+      description: The PSU's IP address if the PSU is currently logged in with the TPP.
+      schema:
+        type: string
+    x-fapi-auth-date:
+      in: header
+      name: x-fapi-auth-date
+      required: false
+      description: "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC"
+      schema:
+        type: string
+        pattern: ^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4} \d{2}:\d{2}:\d{2} (GMT|UTC)$
+    x-fapi-interaction-id:
+      in: header
+      name: x-fapi-interaction-id
+      required: false
+      description: An RFC4122 UID used as a correlation id.
+      schema:
+        type: string
+    x-client-id:
+      in: header
+      name: x-client-id
+      required: false
+      description: "Only used if an ASPSP requires the client ID in order to return rate limit headers. \n\nTPPs __must__ refer to ASPSP developer portals for further information on any rate limit policies, if the headers are supported and any additional requirements.\n\nThis header __must not__ be used for client authentication\n"
+      schema:
+        type: string
+    Authorization:
+      in: header
+      name: Authorization
+      required: true
+      description: An Authorisation Token as per https://tools.ietf.org/html/rfc6750
+      schema:
+        type: string
+    x-customer-user-agent:
+      in: header
+      name: x-customer-user-agent
+      description: Indicates the user-agent that the PSU is using.
+      required: false
+      schema:
+        type: string
+    AccountId:
+      name: AccountId
+      in: path
+      description: AccountId
+      required: true
+      schema:
+        type: string
+  responses:
+    401Error:
+      description: Unauthorized
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+    429Error:
+      description: Too Many Requests
+      headers:
+        Retry-After:
+          description: Number in seconds to wait
+          schema:
+            type: integer
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+    200AccountsAccountIdDirectDebitsRead:
+      description: Direct Debits Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+        RateLimit-Policy:
+          $ref: '#/components/headers/RateLimit-Policy'
+        RateLimit:
+          $ref: '#/components/headers/RateLimit'
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/OBReadDirectDebit2'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadDirectDebit2'
+        application/jose+jwe:
+          schema:
+            $ref: '#/components/schemas/OBReadDirectDebit2'
+    500Error:
+      description: Internal Server Error
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse1'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse1'
+        application/jose+jwe:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse1'
+    400Error:
+      description: Bad request
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse1'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse1'
+        application/jose+jwe:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse1'
+    406Error:
+      description: Not Acceptable
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+    405Error:
+      description: Method Not Allowed
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+    404Error:
+      description: Not found
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+    403Error:
+      description: Forbidden
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse1'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse1'
+        application/jose+jwe:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse1'
+    200DirectDebitsRead:
+      description: Direct Debits Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          required: true
+          schema:
+            type: string
+        RateLimit-Policy:
+          $ref: '#/components/headers/RateLimit-Policy'
+        RateLimit:
+          $ref: '#/components/headers/RateLimit'
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/OBReadDirectDebit2'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadDirectDebit2'
+        application/jose+jwe:
+          schema:
+            $ref: '#/components/schemas/OBReadDirectDebit2'
   securitySchemes:
     TPPOAuth2Security:
       type: oauth2
