@@ -46,7 +46,7 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
-- Financial-Services
+- Financial Services
 - Banking
 - Building Society
 - Open Banking
@@ -69,6 +69,7 @@ tags_raw:
 - Account Information
 - Confirmation of Funds
 - Fintech
+- Financial-Services
 created: '2026-07-23'
 modified: '2026-07-23'
 specificationVersion: '0.23'
@@ -626,6 +627,8 @@ apis:
   humanURL: https://developer.coventrybuildingsociety.co.uk/
   baseURL: https://connect.coventrybuildingsociety.co.uk/pd/digital/open-banking/v1.0
   tags:
+  - Small Business
+  tags_raw:
   - SME
   properties:
   - type: OpenAPI
