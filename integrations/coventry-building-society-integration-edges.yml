@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/coventry-building-society/integrations
+- https://n8n.io/integrations/coventry-building-society/
+- https://composio.dev/toolkits/coventry-building-society
+- https://monid.ai/tools/coventry-building-society
+checked:
+- https://composio.dev/toolkits/coventry-building-society
+- https://monid.ai/tools/coventry-building-society
+- https://n8n.io/integrations/coventry-building-society/
+- https://zapier.com/apps/coventry-building-society/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
